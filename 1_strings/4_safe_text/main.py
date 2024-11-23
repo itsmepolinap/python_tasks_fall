@@ -19,7 +19,27 @@ def get_wrong_article() -> str:
 
 
 def recover_article() -> str:
-    wrong_article = get_wrong_article()
+    wrong_article = get_wrong_article().split("\n")
+ 
+    words = ""
+    for sentence in wrong_article:
+        art = []
+        if not len(sentence):
+            continue
+        sentence = sentence.split()
+        
+        for word in sentence:
+            exc = word.find("!")
+            if exc != -1:
+                word = word[:exc]
+            word = word[::-1].lower()
+            print(word)
+            ind = word.find("woof-woof")
+            if ind != -1:
+                word = word[:ind] + "cat" + word[ind + len("woof-woof"):]
+            art.insert(0, word)
+        words += " ".join(art).capitalize() + ".\n"
+        
+    return words
 
-    # Ваш код ниже, возвращайте уже отредактированный текст!
-    return wrong_article
+print(recover_article())
