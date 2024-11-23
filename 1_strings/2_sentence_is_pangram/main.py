@@ -6,7 +6,16 @@
 Проверка:
 pytest ./2_sentence_is_pangram/test.py
 """
+import string
+alphabet = string.ascii_lowercase
 
+check = False
 
 def is_sentence_is_pangram(sentence: str) -> bool:
     """Пишите ваш код здесь."""
+    
+
+    for bukva in alphabet: 
+        if not bukva in sentence.lower():
+            return False
+    return True            
